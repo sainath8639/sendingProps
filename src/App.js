@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
 
-function App() {
+export default function App() {
+  let a = 3,
+    b = 4;
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <A a={a} b={b} />
     </div>
   );
 }
 
-export default App;
+const A = ({ a, ...rest }) => {
+  console.log("rest is ", rest);
+  return (
+    <div>
+      <B a={a} {...rest} />
+    </div>
+  );
+};
+
+const B = (props) => {
+  const { a, b } = props;
+  console.log("props of B are ", props);
+  console.log("a and b from app to B are ", a, b);
+  return <div>this is b</div>;
+};
